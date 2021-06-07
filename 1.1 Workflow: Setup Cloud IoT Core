@@ -1,4 +1,4 @@
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud services enable compute.googleapis.com pubsub.googleapis.com cloudiot.googleapis.com
+```sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud services enable compute.googleapis.com pubsub.googleapis.com cloudiot.googleapis.com
 Operation "operations/acf.p2-920045331283-5af88dd0-5eb7-4b7d-a835-e223950f3ede" finished successfully.
 sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud pubsub topics create data-streaming-topic
 Created topic [projects/light-maker-315715/topics/data-streaming-topic].
@@ -37,4 +37,4 @@ drwxr-xr-x 2 sudeepbcanada sudeepbcanada 4096 Jun  7 18:55 .docker/
 -rw-r--r-- 1 sudeepbcanada sudeepbcanada 1217 Jun  7 19:05 rsa_private_pkcs8
 sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud iot devices create device-1 --registry=data-streaming-iot-core-registry --region=us-central1 --public-key=path=./rsa_cert.pem,type=RS256
 Created device [device-1].
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
+sudeepbcanada@cloudshell:~ (light-maker-315715)$```
