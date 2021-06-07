@@ -1,0 +1,28 @@
+On the VM:
+    1  ll
+    2  sudo apt update && sudo apt install zip -y
+    3  unzip milestone3-p1.zip
+    4  whoami
+    5  ll
+    6  ll milestone3-p1
+    7  ll milestone3-p1/src/main/java/com/manning/lp/cloud/iot/endtoend/
+    8  ll
+    9  ls milestone3-p1
+   10  ll milestone3-p1
+   11  sh compile.sh
+   12  cd milestone3-p1/
+   13  ll
+   14  sh compile.sh 
+   15  sudo apt update
+   16  sudo apt install openjdk-11-jdk-headless -y
+   17  javac --version
+   18  sudo apt install maven -y
+   19  mvn --version
+   20  cd ..
+   21  ll
+   22  cd milestone3-p1/
+   23  sh compile.sh 
+   24  sh run.sh light-maker-315715
+   25  +
+   26  gcloud pubsub subscriptions pull --auto-ack --limit 10 data-streaming-subscription
+   27  gcloud pubsub subscriptions pull data-streaming-sub --auto-ack --limit 10
