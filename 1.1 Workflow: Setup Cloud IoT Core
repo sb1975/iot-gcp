@@ -1,27 +1,27 @@
-```sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud services enable compute.googleapis.com pubsub.googleapis.com cloudiot.googleapis.com
+```cloudshell:~ (light-maker)$ gcloud services enable compute.googleapis.com pubsub.googleapis.com cloudiot.googleapis.com
 Operation "operations/acf.p2-920045331283-5af88dd0-5eb7-4b7d-a835-e223950f3ede" finished successfully.
 sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud pubsub topics create data-streaming-topic
 Created topic [projects/light-maker-315715/topics/data-streaming-topic].
 
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud pubsub subscriptions create data-streaming-sub --topic=data-streaming-topic
+sudeepbcanada@cloudshell:~ (light-maker-)$
+sudeepbcanada@cloudshell:~ (light-maker-)$ gcloud pubsub subscriptions create data-streaming-sub --topic=data-streaming-topic
 
-Created subscription [projects/light-maker-315715/subscriptions/data-streaming-sub].
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud iot registries create data-streaming-iot-core-registry --event-notification-config=topic=data-streaming-topic --region=us-central1 --no-enable-http-config
+Created subscription [projects/light-maker-/subscriptions/data-streaming-sub].
+sudeepbcanada@cloudshell:~ (light-maker-)$
+sudeepbcanada@cloudshell:~ (light-maker-)$
+sudeepbcanada@cloudshell:~ (light-maker-)$ gcloud iot registries create data-streaming-iot-core-registry --event-notification-config=topic=data-streaming-topic --region=us-central1 --no-enable-http-config
 Created registry [data-streaming-iot-core-registry].
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
-sudeepbcanada@cloudshell:~ (light-maker-315715)$
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem -nodes -out rsa_cert.pem -subj "/CN=unused"
+sudeepbcanada@cloudshell:~ (light-maker-)$
+sudeepbcanada@cloudshell:~ (light-maker-)$
+sudeepbcanada@cloudshell:~ (light-maker-)$
+sudeepbcanada@cloudshell:~ (light-maker-)$ openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem -nodes -out rsa_cert.pem -subj "/CN=unused"
 Generating a RSA private key
 ...+++++
 ...+++++
 writing new private key to 'rsa_private.pem'
 -----
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa_private.pem -nocrypt > rsa_private_pkcs8
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ ll
+sudeepbcanada@cloudshell:~ (light-maker-)$ openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa_private.pem -nocrypt > rsa_private_pkcs8
+sudeepbcanada@cloudshell:~ (light-maker-)$ ll
 total 48
 drwxr-xr-x 4 sudeepbcanada sudeepbcanada 4096 Jun  7 19:05 ./
 drwxr-xr-x 4 root          root          4096 Jun  7 18:55 ../
@@ -35,6 +35,6 @@ drwxr-xr-x 2 sudeepbcanada sudeepbcanada 4096 Jun  7 18:55 .docker/
 -rw-r--r-- 1 sudeepbcanada sudeepbcanada 1107 Jun  7 19:05 rsa_cert.pem
 -rw------- 1 sudeepbcanada sudeepbcanada 1704 Jun  7 19:05 rsa_private.pem
 -rw-r--r-- 1 sudeepbcanada sudeepbcanada 1217 Jun  7 19:05 rsa_private_pkcs8
-sudeepbcanada@cloudshell:~ (light-maker-315715)$ gcloud iot devices create device-1 --registry=data-streaming-iot-core-registry --region=us-central1 --public-key=path=./rsa_cert.pem,type=RS256
+sudeepbcanada@cloudshell:~ (light-maker-)$ gcloud iot devices create device-1 --registry=data-streaming-iot-core-registry --region=us-central1 --public-key=path=./rsa_cert.pem,type=RS256
 Created device [device-1].
-sudeepbcanada@cloudshell:~ (light-maker-315715)$```
+sudeepbcanada@cloudshell:~ (light-maker-)$```
