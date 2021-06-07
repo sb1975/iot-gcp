@@ -26,3 +26,16 @@ On the VM:
    25  +
    26  gcloud pubsub subscriptions pull --auto-ack --limit 10 data-streaming-subscription
    27  gcloud pubsub subscriptions pull data-streaming-sub --auto-ack --limit 10
+On the GCP Shell :
+    1  gcloud services enable compute.googleapis.com pubsub.googleapis.com cloudiot.googleapis.com
+    2  gcloud pubsub topics create data-streaming-topic
+    3  gcloud pubsub subscriptions create data-streaming-sub --topic=data-streaming-topic
+    4  gcloud iot registries create data-streaming-iot-core-registry --event-notification-config=topic=data-streaming-topic --region=us-central1 --no-enable-http-config
+    5  openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem -nodes -out rsa_cert.pem -subj "/CN=unused"
+    6  openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa_private.pem -nocrypt > rsa_private_pkcs8
+    7  ll
+    8  gcloud iot devices create device-1 --registry=data-streaming-iot-core-registry --region=us-central1 --public-key=path=./rsa_cert.pem,type=RS256
+    9  ll
+   10  gcloud compute scp rsa_private_pkcs8 sudeepbcanada@gce-data-streaming-simulator:~/milestone3-p1
+   11  gcloud pubsub subscriptions pull --auto-ack --limit 10 data-streaming-subscription
+   12  gcloud pubsub subscriptions pull data-streaming-sub --auto-ack --limit 10
